@@ -7,12 +7,22 @@ services:
       - "5432:5432"
     networks:
       - net
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - "8080:80"
+    networks:
+      - net
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=carstats@example.com
+      - PGADMIN_DEFAULT_PASSWORD=1234
   web_server:
     container_name: web_server
     build:
       context: ./web_server/
     ports:
-      - "8000:8000"
+      - "80:8000"
     networks:
       - net
 networks:
