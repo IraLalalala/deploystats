@@ -8,7 +8,7 @@ RUN apt-get update && \
 
 
 # add credentials on build
-# docker-compose build --build-arg SSH_PRIVATE_KEY="`echo "$(cat ~/.ssh/id_rsa)"`"
+
 ARG SSH_PRIVATE_KEY
 RUN mkdir /root/.ssh/
 RUN echo "${SSH_PRIVATE_KEY}" > /root/.ssh/id_rsa
@@ -39,23 +39,7 @@ RUN cd ${DJANGO} && \
 
 EXPOSE 8000
 
-
-
-
-ENV DOCKYARD_SRVHOME=/srv
-
-ENV DOCKYARD_SRVPROJ=/srv/hello_django
-
-
-# Create application subdirectories
-WORKDIR $DOCKYARD_SRVHOME
-RUN mkdir media static logs
-VOLUME ["$DOCKYARD_SRVHOME/media/", "$DOCKYARD_SRVHOME/logs/"]
-
-
-
-
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
-ENTRYPOINT ["sh", "/start.sh"]
+ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
