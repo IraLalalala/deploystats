@@ -1,2 +1,2 @@
 # Deploy Stats
-`./build_docs.sh <database_password>`
+`./build.sh <database_password>`
