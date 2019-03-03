@@ -1,29 +1,39 @@
 version: '3'
 services:
   postgres:
+    hostname: postgres
     container_name: postgres
     image: postgres
     ports:
       - "5432:5432"
     networks:
       - net
+    env_file:
+     - ./carstats.env
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
     ports:
       - "8080:80"
+    links:
+      - postgres
     networks:
       - net
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=carstats@example.com
-      - PGADMIN_DEFAULT_PASSWORD=1234
+    env_file:
+     - ./carstats.env
   web_server:
     container_name: web_server
+    hostname: web_server
     build:
       context: ./web_server/
     ports:
       - "80:8000"
+    links:
+      - postgres
     networks:
       - net
+    env_file:
+     - ./carstats.env
 networks:
   net:
+
