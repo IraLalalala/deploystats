@@ -1,5 +1,5 @@
 #!/bin/bash
-POSTGRES_PASSWORD=$1
-echo $POSTGRES_PASSWORD
-docker-compose build --build-arg SSH_PRIVATE_KEY="`echo "$(cat ~/.ssh/id_rsa)"`" --build-arg POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+wget -O carstats.env https://www.dropbox.com/s/6qbyczs8ucub4hk/carstats.env?dl=1
+docker-compose build
 docker-compose up -d
+rm carstats.env
