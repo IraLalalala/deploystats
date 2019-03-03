@@ -26,7 +26,7 @@ RUN git clone git@github.com:nvtyukaev/scrapestats.git
 FROM ubuntu
 
 ENV DJANGO /srv/carstats
-ENV SCRAPER /srv/scraper
+ENV SCRAPER /srv/scrapestats
 
 RUN apt-get update && \
 	apt-get install -y wget && \

@@ -28,7 +28,7 @@ done
 
 
 python3 $DJANGO/manage.py makemigrations
-python3 $DJANGO/manage.py makemigrations scrapestats
+python3 $DJANGO/manage.py makemigrations carstats
 python3 $DJANGO/manage.py migrate
-python3 $SCRAPER/scrapestats/main.py --send
+python3 $SCRAPER/main.py --send
 python3 $DJANGO/manage.py runserver 0.0.0.0:8000
