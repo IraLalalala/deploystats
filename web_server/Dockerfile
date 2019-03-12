@@ -2,6 +2,13 @@ FROM ubuntu as intermediate
 
 MAINTAINER Nikolay Tyukaev
 
+RUN apt-get clean && apt-get update && apt-get install -y locales
+
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
 # install git
 RUN apt-get update && \
 	apt-get install -y wget && \
@@ -24,6 +31,9 @@ RUN git clone git@github.com:nvtyukaev/carstats.git
 RUN git clone git@github.com:nvtyukaev/scrapestats.git
 
 FROM ubuntu
+
+# Set the locale
+	
 
 ENV DJANGO /srv/carstats
 ENV SCRAPER /srv/scrapestats
