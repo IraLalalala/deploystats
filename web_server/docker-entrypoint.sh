@@ -1,5 +1,6 @@
 #!/bin/bash
-function postgres_ready(){
+function postgres_ready()
+{
 python3 << END
 import psycopg2
 import json
